@@ -8,7 +8,6 @@ import javax.inject.Named
 
 class ServerModule: Module {
     override fun configure(binder: Binder?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     @Provides

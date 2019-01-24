@@ -22,8 +22,4 @@ class ServerApplication:Application<ServerConfiguration>() {
         println("The server says, \"${configuration.message}\"!!!")
 
     }
-
-    fun main(args: Array<String>) {
-        ServerApplication().run(*args)
-    }
 }

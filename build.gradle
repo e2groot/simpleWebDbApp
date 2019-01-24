@@ -1,10 +1,14 @@
 plugins {
     id 'java'
+    id 'application'
     id 'org.jetbrains.kotlin.jvm' version '1.3.10'
 }
 
+mainClassName = 'com.e2groot.simpleWebDbApp.MainAppKt'
+
 group 'com.e2groot.simpleWebDbApp'
 version '1.0-SNAPSHOT'
+
 
 sourceCompatibility = 1.8
 
@@ -14,6 +18,8 @@ repositories {
 def guiceVersion = '4.2.2'
 def dropWizardVersion = '1.3.8'
 def dropWizardGuiceVersion = '1.3.5.0'
+
+
 
 dependencies {
     compile "com.google.inject:guice:${guiceVersion}"
@@ -28,4 +34,17 @@ compileKotlin {
 }
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+run {
+    args = ['server', 'config/local.yml']
+}
+
+jar {
+    manifest {
+        attributes (
+                'Main-Class': 'com.e2groot.simpleWebDbApp.MainAppKt'
+        )
+    }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 }
